@@ -1,38 +1,42 @@
 package com.mesaj.app.pageobjects;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.Random;
 
 @Component
 public class SignUpServices {
 
     @Autowired
     private SignUpPageObject signUpPageObject;
-
+    @Autowired
     private WebDriver driver;
 
+    //@Autowired
+    //public SignUpServices(WebDriver driver) {
+        //this.driver = driver;
+    //}
     @Autowired
-    public SignUpServices(WebDriver driver) {
-        this.driver = driver;
-    }
+    WebDriverWait wait;
 
     public void go(String url) {
         driver.get(url);
     }
 
-    long theRandomNum;
     long number1 = 9000000000L;
+    long randomPhone = Long.valueOf((long) (Math.floor(Math.random() * number1) + 1000000000));
+    String phoneNumber = String.valueOf(randomPhone);
 
-    {
-        theRandomNum = Long.valueOf((long) (Math.floor(Math.random() * number1) + 1000000000));
-    }
-
-    String phoneNumber = String.valueOf(theRandomNum);
-
+    Random r = new Random();
+    int rand1 = r.nextInt(1000);
 
     public void writeFirstName(String firstname) {
+        this.wait.until(ExpectedConditions.visibilityOf(this.signUpPageObject.getFirstNameTextBox()));
         this.signUpPageObject.getFirstNameTextBox().sendKeys(firstname);
     }
 
@@ -45,7 +49,7 @@ public class SignUpServices {
     }
 
     public void writeEmail(String email) {
-        this.signUpPageObject.getEmailTextBox().sendKeys(email);
+        this.signUpPageObject.getEmailTextBox().sendKeys(rand1+email);
     }
 
     public void writePhone() {

@@ -10,12 +10,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Getter
-public class SignUpPageObject {
+public class SignUpPageObject extends PageBase {
 
     @Autowired
     public SignUpPageObject(WebDriver driver)
     {
-        PageFactory.initElements(driver,this);
+        super(driver);
     }
 
     @FindBy(xpath =" //input[@ng-model='FirstName']" )
