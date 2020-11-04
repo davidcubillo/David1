@@ -11,7 +11,7 @@ public class DriverFactory {
     {
         if(Browser.chrome == browser)
         {
-            System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/test/resources/drivers/windows/chromedriver86.exe");
+            System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/test/resources/drivers/windows/chromedriver2");
             return new ChromeDriver();
         }
         if(Browser.firefox == browser)
