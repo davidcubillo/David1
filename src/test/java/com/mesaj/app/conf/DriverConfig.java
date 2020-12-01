@@ -2,8 +2,10 @@ package com.mesaj.app.conf;
 
 import com.mesaj.app.enums.Browser;
 import com.mesaj.app.util.driver.DriverFactory;
+import java.net.MalformedURLException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -22,13 +24,17 @@ public class DriverConfig {
 
     @Value("${element.wait.timeout.seconds}")
     private int webDriverWaitTimeOut;
-    @Bean
-    public WebDriver webDriver() {
 
-        return DriverFactory.get(driverType);
+    @Autowired
+    private DriverFactory driverFactory;
+
+    @Bean
+    public WebDriver webDriver() throws MalformedURLException {
+
+        return driverFactory.get(driverType);
     }
     @Bean
-    public WebDriverWait waitFor(){
+    public WebDriverWait waitFor() throws MalformedURLException {
         return new WebDriverWait (webDriver(), Duration.ofSeconds(webDriverWaitTimeOut));
     }
 }

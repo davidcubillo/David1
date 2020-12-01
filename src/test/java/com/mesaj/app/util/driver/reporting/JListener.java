@@ -7,8 +7,6 @@ import io.cucumber.plugin.event.Status;
 import io.cucumber.plugin.event.TestCase;
 import io.cucumber.plugin.event.TestCaseFinished;
 import io.cucumber.plugin.event.TestCaseStarted;
-import io.cucumber.plugin.event.TestStep;
-import io.cucumber.plugin.event.TestStepFinished;
 
 public class JListener implements ConcurrentEventListener {
 
